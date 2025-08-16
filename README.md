@@ -23,11 +23,16 @@ Dibuat dengan **HTML, CSS, dan JavaScript**, aplikasi ini memiliki antarmuka mod
 
 ## 📂 Struktur Proyek  
 geometry-cube-calculator/
-├── index.html # Halaman utama
-├── style.css # Styling aplikasi
-├── script.js # Logika kalkulasi
-├── assets/ # Gambar/ikon pendukung
-└── README.md # Dokumentasi proyek
+│
+├── 📄 index.html # Halaman utama aplikasi
+├── 🎨 style.css # Styling (tata letak, warna, animasi)
+├── ⚙️ script.js # Logika perhitungan volume kubus
+│
+├── 📁 assets/ # Folder untuk aset pendukung
+│ ├── 🖼️ preview.png # Screenshot tampilan aplikasi
+│ └── 📷 icons/ # Ikon/gambar tambahan
+│
+└── 📘 README.md # Dokumentasi proyek
 
 
 ---
