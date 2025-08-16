@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Volume Kubus 3D</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .cube {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(-30deg) rotateY(30deg);
+      animation: rotate 10s infinite linear;
+    }
+    .cube div {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: rgba(59,130,246,0.7);
+      border: 2px solid #1e40af;
+    }
+    .front  { transform: translateZ(50px); }
+    .back   { transform: rotateY(180deg) translateZ(50px); }
+    .right  { transform: rotateY(90deg) translateZ(50px); }
+    .left   { transform: rotateY(-90deg) translateZ(50px); }
+    .top    { transform: rotateX(90deg) translateZ(50px); }
+    .bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+    @keyframes rotate {
+      from { transform: rotateX(-30deg) rotateY(0deg); }
+      to   { transform: rotateX(-30deg) rotateY(360deg); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-200 via-blue-100 to-white h-screen flex items-center justify-center">
+
+  <div class="bg-white p-8 rounded-2xl shadow-2xl w-[400px] text-center space-y-6">
+    <h1 class="text-2xl font-bold text-indigo-700">Kalkulator Volume Kubus</h1>
+
+    <input id="sisi" type="number" placeholder="Masukkan sisi kubus (cm)"
+      class="w-full px-4 py-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+
+    <button onclick="hitungVolume()" 
+      class="w-full bg-indigo-600 text-white py-2 rounded-xl shadow hover:bg-indigo-700 transition">
+      Hitung Volume
+    </button>
+
+    <div id="hasil" class="text-lg font-semibold text-green-600 opacity-0 transition duration-500"></div>
+
+    <div class="flex justify-center mt-6">
+      <div class="cube" id="cube">
+        <div class="front"></div>
+        <div class="back"></div>
+        <div class="right"></div>
+        <div class="left"></div>
+        <div class="top"></div>
+        <div class="bottom"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function hitungVolume() {
+      const sisi = document.getElementById("sisi").value;
+      const hasil = document.getElementById("hasil");
+      const cube = document.getElementById("cube");
+
+      if (sisi === "" || sisi <= 0) {
+        hasil.innerHTML = "❌ Masukkan angka sisi yang benar!";
+        hasil.classList.remove("opacity-0");
+        return;
+      }
+
+      let volume = Math.pow(sisi, 3);
+      hasil.innerHTML = `📦 Volume kubus: <span class="text-blue-600">${volume} cm³</span>`;
+      hasil.classList.remove("opacity-0");
+
+      // ubah ukuran kubus sesuai input
+      const ukuran = Math.min(sisi * 10, 200); 
+      cube.style.width = ukuran + "px";
+      cube.style.height = ukuran + "px";
+      cube.querySelectorAll("div").forEach(face => {
+        face.style.width = ukuran + "px";
+        face.style.height = ukuran + "px";
+        face.style.transform = face.classList.contains("front")  ? `translateZ(${ukuran/2}px)` :
+                               face.classList.contains("back")   ? `rotateY(180deg) translateZ(${ukuran/2}px)` :
+                               face.classList.contains("right")  ? `rotateY(90deg) translateZ(${ukuran/2}px)` :
+                               face.classList.contains("left")   ? `rotateY(-90deg) translateZ(${ukuran/2}px)` :
+                               face.classList.contains("top")    ? `rotateX(90deg) translateZ(${ukuran/2}px)` :
+                               `rotateX(-90deg) translateZ(${ukuran/2}px)`;
+      });
+    }
+  </script>
+
+</body>
+</html>
