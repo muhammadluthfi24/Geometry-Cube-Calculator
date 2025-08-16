@@ -1,4 +1,4 @@
-# 📦 Geometry Cube Calculator  
+# Geometry Cube Calculator  
 
 
 **Geometry Cube Calculator** adalah aplikasi web sederhana untuk menghitung **volume kubus 3D**.  
@@ -33,7 +33,7 @@ geometry-cube-calculator/
 ---
 
 ## 📸 Tampilan Aplikasi  
-![Preview](./assets/preview.png)  
+
 
 _Tampilan aplikasi dengan input sisi kubus dan hasil perhitungan volume._  
 
